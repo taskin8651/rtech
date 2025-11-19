@@ -4,14 +4,14 @@
 	use App\Models\Officetime;
 	use App\Models\Address;
 	use App\Models\Map;
-	use App\Models\Websitelogo;
+	use App\Models\WebsiteLogo;
 	use App\Models\ProjectType;
 	$gmails     = Gmail::first();
 	$numbers    = Number::first();
 	$address    = Address::first();
 	$officetime = Officetime::first();
 	$map        = Map::first();
-	$websitelogo= Websitelogo::first();
+	$websitelogo= WebsiteLogo::first();
 	$projecttypes = ProjectType::all();
 @endphp
 
