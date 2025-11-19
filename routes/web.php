@@ -36,6 +36,8 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Custom\CourseController;
 use App\Http\Controllers\Custom\ProjectsController;
 use App\Http\Controllers\Custom\ContactController;
+use App\Http\Controllers\Custom\NewsLatterController;
+
 
 
 Route::redirect('/', '/login');
@@ -208,6 +210,7 @@ Route::group(['prefix' => 'profile', 'as' => 'profile.', 'middleware' => ['auth'
 
 
 //custom routes
+Route::view('/','custom.index');
 Route::get('/courses', [CourseController::class, 'index'])->name('custom.courses');
 Route::get('/courses/{id}', [CourseController::class, 'show'])->name('custom.course-details');
 
@@ -217,3 +220,4 @@ Route::get('/project', [ProjectsController::class, 'index'])
 
      Route::get('/contact', [ContactController::class, 'index'])->name('contact.index');
      Route::post('/contact/store', [ContactController::class, 'store'])->name('contact.store');
+Route::post('/newsletter', [NewsLatterController::class, 'store'])->name('newsletter.store');
