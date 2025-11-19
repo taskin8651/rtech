@@ -173,7 +173,7 @@
 
 
     @auth
-    <div class="dropdown user-dropdown">
+    <div class="dropdown user-dropdown white-btn bt">
 
         <!-- Button -->
         <button class="btn user-menu-btn d-flex align-items-center" 

@@ -37,6 +37,8 @@ use App\Http\Controllers\Custom\CourseController;
 use App\Http\Controllers\Custom\ProjectsController;
 use App\Http\Controllers\Custom\ContactController;
 use App\Http\Controllers\Custom\NewsLatterController;
+use App\Http\Controllers\Custom\IndexController;
+use App\Http\Controllers\Custom\AboutController;
 
 
 
@@ -210,13 +212,18 @@ Route::group(['prefix' => 'profile', 'as' => 'profile.', 'middleware' => ['auth'
 
 
 //custom routes
-Route::view('/','custom.index');
+Route::get('/', [IndexController::class, 'index'])->name('custom.home');
+Route::get('/about', [AboutController::class, 'index'])->name('custom.about');
 Route::get('/courses', [CourseController::class, 'index'])->name('custom.courses');
 Route::get('/courses/{id}', [CourseController::class, 'show'])->name('custom.course-details');
 
 Route::get('/project', [ProjectsController::class, 'index'])
      ->name('projects.index');
      Route::get('/projects/{id}', [ProjectsController::class, 'show'])->name('project.show');
+
+     Route::get('/projects/category/{id}', [ProjectsController::class, 'categoryWise'])
+     ->name('projects.category');
+
 
      Route::get('/contact', [ContactController::class, 'index'])->name('contact.index');
      Route::post('/contact/store', [ContactController::class, 'store'])->name('contact.store');

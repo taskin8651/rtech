@@ -25,4 +25,16 @@ class ProjectsController extends Controller
 
         return view('custom.project-details', compact('project'));
     }
+
+    public function categoryWise($id)
+{
+    // Only projects of this Project Type
+    $projects = ProjectDetail::where('project_type_id', $id)
+                ->with(['user', 'laguage'])
+                ->latest()
+                ->paginate(6);
+
+    return view('custom.project', compact('projects'));
+}
+
 }
