@@ -540,7 +540,7 @@
 							<img src="assets/img/faq.jpg" alt="faq">
 							<div class="faq_contact">
 								<h4>Online Support</h4>
-								<p>{{$numbers->title}}</p>
+								<p>{{$numbers->title ?? ''}}</p>
 							</div>	
 						</div>	
 					</div>	
