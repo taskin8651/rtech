@@ -7,6 +7,7 @@ use App\Models\ProjectDetail;
 use App\Models\ProjectType;
 use App\Models\User;
 use Livewire\Component;
+use Illuminate\Support\Facades\Auth;
 use Spatie\MediaLibrary\MediaCollections\Models\Media;
 
 class Create extends Component
@@ -44,12 +45,17 @@ class Create extends Component
         Media::whereIn('uuid', $this->mediaToRemove)->delete();
     }
 
-    public function mount(ProjectDetail $projectDetail)
+     public function mount(ProjectDetail $projectDetail)
     {
-        $this->projectDetail = $projectDetail;
+        $this->projectDetail            = $projectDetail;
+
+        // 🔥 SET DEFAULT USER + CREATED BY + STATUS
+        $this->projectDetail->user_id        = Auth::id();  // <-- Logged in User
+        $this->projectDetail->created_by_id  = Auth::id();  // <-- Logged in User
+        $this->projectDetail->status         = 'active';  // <-- Default Status
+
         $this->initListsForFields();
     }
-
     public function render()
     {
         return view('livewire.project-detail.create');

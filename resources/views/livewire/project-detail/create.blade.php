@@ -1,6 +1,6 @@
 <form wire:submit.prevent="submit" class="pt-3">
 
-    <div class="form-group {{ $errors->has('projectDetail.user_id') ? 'invalid' : '' }}">
+    <!-- <div class="form-group {{ $errors->has('projectDetail.user_id') ? 'invalid' : '' }}">
         <label class="form-label" for="user">{{ trans('cruds.projectDetail.fields.user') }}</label>
         <x-select-list class="form-control" id="user" name="user" :options="$this->listsForFields['user']" wire:model="projectDetail.user_id" />
         <div class="validation-message">
@@ -9,7 +9,7 @@
         <div class="help-block">
             {{ trans('cruds.projectDetail.fields.user_helper') }}
         </div>
-    </div>
+    </div> -->
     <div class="form-group {{ $errors->has('projectDetail.project_type_id') ? 'invalid' : '' }}">
         <label class="form-label" for="project_type">{{ trans('cruds.projectDetail.fields.project_type') }}</label>
         <x-select-list class="form-control" id="project_type" name="project_type" :options="$this->listsForFields['project_type']" wire:model="projectDetail.project_type_id" />
@@ -50,7 +50,7 @@
             {{ trans('cruds.projectDetail.fields.code_file_helper') }}
         </div>
     </div>
-    <div class="form-group {{ $errors->has('projectDetail.created_by_id') ? 'invalid' : '' }}">
+    <!-- <div class="form-group {{ $errors->has('projectDetail.created_by_id') ? 'invalid' : '' }}">
         <label class="form-label" for="created_by">{{ trans('cruds.projectDetail.fields.created_by') }}</label>
         <x-select-list class="form-control" id="created_by" name="created_by" :options="$this->listsForFields['created_by']" wire:model="projectDetail.created_by_id" />
         <div class="validation-message">
@@ -59,7 +59,7 @@
         <div class="help-block">
             {{ trans('cruds.projectDetail.fields.created_by_helper') }}
         </div>
-    </div>
+    </div> -->
     <div class="form-group {{ $errors->has('projectDetail.status') ? 'invalid' : '' }}">
         <label class="form-label">{{ trans('cruds.projectDetail.fields.status') }}</label>
         <select class="form-control" wire:model="projectDetail.status">
