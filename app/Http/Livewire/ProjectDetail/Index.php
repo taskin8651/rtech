@@ -66,17 +66,25 @@ class Index extends Component
     }
 
     public function render()
-    {
-        $query = ProjectDetail::with(['user', 'projectType', 'createdBy', 'laguage'])->advancedFilter([
-            's'               => $this->search ?: null,
-            'order_column'    => $this->sortBy,
-            'order_direction' => $this->sortDirection,
-        ]);
+{
+    $query = ProjectDetail::with(['user', 'projectType', 'createdBy', 'laguage']);
 
-        $projectDetails = $query->paginate($this->perPage);
-
-        return view('livewire.project-detail.index', compact('projectDetails', 'query'));
+    // 👇 If NOT Admin → Show only user's own created projects
+    if (!auth()->user()->is_admin) {
+        $query->where('created_by_id', auth()->id());
     }
+
+    // Existing filters
+    $query = $query->advancedFilter([
+        's'               => $this->search ?: null,
+        'order_column'    => $this->sortBy,
+        'order_direction' => $this->sortDirection,
+    ]);
+
+    $projectDetails = $query->paginate($this->perPage);
+
+    return view('livewire.project-detail.index', compact('projectDetails', 'query'));
+}
 
     public function deleteSelected()
     {
