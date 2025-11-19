@@ -13,12 +13,12 @@
 									It is long established fact that reader distracted<br>
 									by the readable content.
 								</p>
-								<div class="banner_search_form">
+								<!-- <div class="banner_search_form">
 									<form action="#" method="post">
 										<input type="text" class="form-control" placeholder="What do you need to Learn ?">
 										<button type="submit" class="bsearch_btn">SEARCH</button>
 									</form>
-								</div>
+								</div> -->
 								<div class="bcate">
 									Category: <a href="#">Marketing</a> , <a href="#">UI / UX Design</a> , <a href="#">WordPress</a>
 								</div>
@@ -205,6 +205,14 @@
 			<div class="container">
 				<div class="row">
 					<div class="col-12 wow fadeInUp">
+						<style>
+							.counter-title h2::before,
+.counter-title h2::after {
+    content: none !important;
+    display: none !important;
+}
+
+						</style>
 						<div class="counter-title text-center">
 							<h2>Trusted by <span>Companies</span> Achievements</h2>
 						</div>

@@ -165,7 +165,7 @@
 						</nav>
 					</div><!-- End Col -->		
 
-					<div class="col-30 right-col align-self-end text-end">
+					<div class="col-30 right-col align-self-end text-end d-none d-md-block">
 
     @guest
         <a href="/admin" class="white-btn bt">Login / Register</a>
@@ -453,9 +453,9 @@
 						<svg fill="none" viewBox="0 0 24 24"><circle cx="12" cy="12" r="12" fill="#0D5FF9"/></svg>					
 					</div>					
 					
-					<div class="fshape3">
+					<!-- <div class="fshape3">
 						<svg fill="none" viewBox="0 0 132 199"><circle cx="99.5" cy="99.5" r="98.5" stroke="#fff" stroke-opacity=".05" stroke-width="2"/></svg>					
-					</div>					
+					</div>					 -->
 					
 					<div class="fshape4 spinning">
 						<svg fill="none" viewBox="0 0 82 92"><path stroke="#fff" stroke-opacity=".05" stroke-width="3" d="M36.75 3.186a8.5 8.5 0 018.5 0l30.703 17.726a8.5 8.5 0 014.25 7.361v35.454a8.5 8.5 0 01-4.25 7.36L45.25 88.815a8.5 8.5 0 01-8.5 0L6.047 71.088a8.5 8.5 0 01-4.25-7.361V28.273a8.5 8.5 0 014.25-7.362L36.75 3.186z"/></svg>					
