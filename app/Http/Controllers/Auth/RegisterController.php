@@ -11,63 +11,58 @@ use Illuminate\Support\Facades\Validator;
 
 class RegisterController extends Controller
 {
-    /*
-    |--------------------------------------------------------------------------
-    | Register Controller
-    |--------------------------------------------------------------------------
-    |
-    | This controller handles the registration of new users as well as their
-    | validation and creation. By default this controller uses a trait to
-    | provide this functionality without requiring any additional code.
-    |
-    */
-
     use RegistersUsers;
 
-    /**
-     * Where to redirect users after registration.
-     *
-     * @var string
-     */
     protected $redirectTo = RouteServiceProvider::HOME;
 
-    /**
-     * Create a new controller instance.
-     *
-     * @return void
-     */
     public function __construct()
     {
         $this->middleware('guest');
     }
 
     /**
-     * Get a validator for an incoming registration request.
-     *
-     * @param  array  $data
-     * @return \Illuminate\Contracts\Validation\Validator
+     * VALIDATION RULES
      */
     protected function validator(array $data)
     {
         return Validator::make($data, [
-            'name'     => ['required', 'string', 'max:255'],
-            'email'    => ['required', 'string', 'email', 'max:255', 'unique:users'],
-            'password' => ['required', 'string', 'min:8', 'confirmed'],
+            'name'         => ['required', 'string', 'max:255'],
+            'email'        => ['required', 'string', 'email', 'max:255', 'unique:users'],
+            'number'       => ['nullable', 'string', 'max:20'],
+            'address'      => ['nullable', 'string', 'max:255'],
+            'education'    => ['nullable', 'string', 'max:255'],
+            'locale'       => ['nullable', 'string', 'max:10'],
+            'bio'          => ['nullable', 'string', 'max:1000'],
+
+            'profile_photo' => ['nullable', 'image', 'max:2048'], // 2MB limit
+
+            'password'      => ['required', 'string', 'min:8', 'confirmed'],
         ]);
     }
 
     /**
-     * Create a new user instance after a valid registration.
-     *
-     * @param  array  $data
-     * @return \App\Models\User
+     * CREATE USER + UPLOAD PROFILE PHOTO
      */
     protected function create(array $data)
     {
-        return User::create([
-            'name'     => $data['name'],
-            'email'    => $data['email'],
-            'password' => Hash::make($data['password']),
+        // Step 1: Create User
+        $user = User::create([
+            'name'      => $data['name'],
+            'email'     => $data['email'],
+            'number'    => $data['number'] ?? null,
+            'address'   => $data['address'] ?? null,
+            'education' => $data['education'] ?? null,
+            'locale'    => $data['locale'] ?? null,
+            'bio'       => $data['bio'] ?? null,
+            'password'  => Hash::make($data['password']),
         ]);
+
+        // Step 2: Upload Profile Photo (if exists)
+        if (request()->hasFile('profile_photo')) {
+            $user->addMedia(request()->file('profile_photo'))
+                 ->toMediaCollection('user_profile_photo');
+        }
+
+        return $user;
     }
 }
